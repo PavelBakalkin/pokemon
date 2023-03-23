@@ -1,17 +1,15 @@
 import { Container, Navbar } from "react-bootstrap";
-// import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 
 export const Footer = () => {
   return (
     <Navbar
-      bg="danger"
       expand={true}
-      className={`${styles.footerWrapper} ${styles.navbar}`}
+      className={`${styles.footerWrapper} ${styles.navbar} ${styles.navbar}`}
     >
       <Container className={`${styles.container}`}>
         <Navbar.Brand className={styles.navbarBrand}>
-          {/* <Link to="/"> The Social Network </Link> */}
+          <div> Pokemons </div>
         </Navbar.Brand>
       </Container>
     </Navbar>

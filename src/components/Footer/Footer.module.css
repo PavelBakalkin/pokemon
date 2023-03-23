@@ -3,6 +3,11 @@
     text-decoration: none;
 }
 
+.navbar {
+    background: rgb(245, 255, 0);
+    background: linear-gradient(0deg, rgba(245, 255, 0, 1) 21%, rgba(0, 255, 226, 1) 100%);
+}
+
 .navbarBrand {
     font-size: 2.5rem;
 }
