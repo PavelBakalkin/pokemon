@@ -5,15 +5,13 @@ import { Header } from "../components/Header/Header";
 import { Footer } from "../components/Footer/Footer";
 import Pokemons from "./Pokemons/Pokemons";
 import { useAppDispatch } from "../store/hooks";
-import { fetchMainInfo } from "../store/pokemonsSlice";
 import { fetchDetailsInfo } from "../store/pokemonDetailsSlice";
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchMainInfo({ pokemonName: "" }));
-    dispatch(fetchDetailsInfo({ pokemonName: "pikachu" }));
+    dispatch(fetchDetailsInfo({ limit: 20, offset: 0 }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

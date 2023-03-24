@@ -12,5 +12,6 @@ export type ResponseType = {
 };
 
 export type IPokemon = {
-  pokemonName?: string;
+  limit: number;
+  offset: number;
 };

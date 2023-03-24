@@ -5,19 +5,24 @@ import { useAppSelector } from "../../store/hooks";
 import styles from "./Pokemons.module.css";
 
 export default function Pokemons() {
-  const pokemons = useAppSelector((state) => state.pokemons.mainPageInfo);
-
-  console.log(pokemons);
+  const pokemonsDetails = useAppSelector(
+    (state) => state.pokemonDetails.pokemonDetails?.pokemon_v2_pokemonsprites
+  );
 
   return (
     <Container className={styles.wrapper}>
       <Stack gap={4}>
         <Row>
-          {pokemons &&
-            pokemons.results.map((pokemon: IPokemonName) => {
+          {pokemonsDetails &&
+            pokemonsDetails.map((pokemon) => {
               return (
                 <Col md={12} lg={3}>
-                  <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+                  <PokemonCard
+                    key={pokemon.pokemon_v2_pokemon.name}
+                    pokemonName={pokemon.pokemon_v2_pokemon.name}
+                    pokemonId={pokemon.pokemon_id}
+                  />
+                  ;
                 </Col>
               );
             })}
