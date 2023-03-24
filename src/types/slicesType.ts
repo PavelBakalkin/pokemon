@@ -12,5 +12,5 @@ export type ResponseType = {
 };
 
 export type IPokemon = {
-  pokemonId?: number;
+  pokemonName?: string;
 };

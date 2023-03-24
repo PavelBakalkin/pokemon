@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { JSONPlaceholder } from "../constants/api-constants";
-import { IPokemonMain } from "../interfaces/IPokemonMain";
 import { PokemonDetailsState } from "../types/pokemonDetailsSliceType";
 import { FetchInfoError, IPokemon, ResponseType } from "../types/slicesType";
 
@@ -10,7 +9,9 @@ export const fetchDetailsInfo = createAsyncThunk<
   IPokemon,
   { rejectValue: FetchInfoError }
 >("pokemons/fetchInfo", async (request: IPokemon, thunkApi) => {
-  const response = await axios.get(`${JSONPlaceholder}`);
+  const response = await axios.get(
+    `${JSONPlaceholder}${request.pokemonName}?fields=moves,sprites,stats`
+  );
 
   if (response.status !== 200) {
     return thunkApi.rejectWithValue({
@@ -18,7 +19,7 @@ export const fetchDetailsInfo = createAsyncThunk<
     });
   }
 
-  const data: IPokemonMain = await response.data;
+  const data: PokemonDetailsState = await response.data;
 
   console.log(data);
 
@@ -28,6 +29,7 @@ export const fetchDetailsInfo = createAsyncThunk<
 const initialState: PokemonDetailsState = {
   status: "idle",
   error: null,
+  pokemonDetails: null,
 };
 
 const pokemonDetailsSlice = createSlice({
@@ -44,12 +46,11 @@ const pokemonDetailsSlice = createSlice({
     });
 
     builder.addCase(fetchDetailsInfo.fulfilled, (state, { payload }) => {
-      //   state.mainPageInfo = {
-      //     count: payload.data.count,
-      //     next: payload.data.next,
-      //     previous: payload.data.previous,
-      //     results: [...payload.data.results],
-      //   };
+      // state.pokemonDetails = {
+      //   moves: [...payload.data.moves],
+      //   sprites: [...payload.data.sprites],
+      //   stats: [payload.data.stats],
+      // };
       state.status = "idle";
     });
 
