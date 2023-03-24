@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { JSONPlaceholder } from "../constants/api-constants";
 import { IPokemonMain } from "../interfaces/IPokemonMain";
-import { PokemonsState } from "../types/pokemonsSlice";
+import { PokemonDetailsState } from "../types/pokemonDetailsSliceType";
 import { FetchInfoError, IPokemon, ResponseType } from "../types/slicesType";
 
-export const fetchMainInfo = createAsyncThunk<
+export const fetchDetailsInfo = createAsyncThunk<
   ResponseType,
   IPokemon,
   { rejectValue: FetchInfoError }
@@ -25,40 +25,39 @@ export const fetchMainInfo = createAsyncThunk<
   return { data: data };
 });
 
-const initialState: PokemonsState = {
+const initialState: PokemonDetailsState = {
   status: "idle",
   error: null,
-  mainPageInfo: null,
 };
 
-const pokemonsSlice = createSlice({
-  name: "pokemons",
+const pokemonDetailsSlice = createSlice({
+  name: "pokemon-details",
 
   initialState,
 
   reducers: {},
 
   extraReducers: (builder) => {
-    builder.addCase(fetchMainInfo.pending, (state) => {
+    builder.addCase(fetchDetailsInfo.pending, (state) => {
       state.status = "loading";
       state.error = null;
     });
 
-    builder.addCase(fetchMainInfo.fulfilled, (state, { payload }) => {
-      state.mainPageInfo = {
-        count: payload.data.count,
-        next: payload.data.next,
-        previous: payload.data.previous,
-        results: [...payload.data.results],
-      };
+    builder.addCase(fetchDetailsInfo.fulfilled, (state, { payload }) => {
+      //   state.mainPageInfo = {
+      //     count: payload.data.count,
+      //     next: payload.data.next,
+      //     previous: payload.data.previous,
+      //     results: [...payload.data.results],
+      //   };
       state.status = "idle";
     });
 
-    builder.addCase(fetchMainInfo.rejected, (state, { payload }) => {
+    builder.addCase(fetchDetailsInfo.rejected, (state, { payload }) => {
       if (payload) state.error = payload.message;
       state.status = "idle";
     });
   },
 });
 
-export default pokemonsSlice.reducer;
+export default pokemonDetailsSlice.reducer;
