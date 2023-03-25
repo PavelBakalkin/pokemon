@@ -26,8 +26,6 @@ export const fetchMainInfo = createAsyncThunk<
 
   const data = await response.data;
 
-  console.log(data);
-
   return { data: data };
 });
 
@@ -38,6 +36,8 @@ export const fetchDetailsInfo = createAsyncThunk<
 >("pokemons/fetchPokemonsDetails", async ({ limit, offset }, thunkApi) => {
   const variables = { limit, offset };
   const data: IPokemonDetails = await client.request(query, variables);
+
+  console.log(data);
 
   return { data: data };
 });
