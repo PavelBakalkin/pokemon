@@ -48,7 +48,10 @@ export default function PokemonCard({
               <Card.Img alt={`${pokemonName}`} src={`${pokemonImg}`} />
             </Col>
             <Col md={12} lg={12}>
-              <Card.Title className={`${styles.cardTitle}`} onClick={handleShow}>
+              <Card.Title
+                className={`${styles.cardTitle}`}
+                onClick={handleShow}
+              >
                 {pokemonName.toUpperCase()}
               </Card.Title>
             </Col>
@@ -63,5 +66,5 @@ export default function PokemonCard({
         />
       )}
     </>
-  );
+  )
 }

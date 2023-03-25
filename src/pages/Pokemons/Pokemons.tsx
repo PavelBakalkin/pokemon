@@ -23,7 +23,6 @@ export default function Pokemons() {
                     pokemonName={pokemon.pokemon_v2_pokemon.name}
                     pokemonId={pokemon.pokemon_id}
                   />
-                  ;
                 </Col>
               );
             })}
