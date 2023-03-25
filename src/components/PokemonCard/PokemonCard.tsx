@@ -15,12 +15,12 @@ export default function PokemonCard({
   const fac = new FastAverageColor();
 
   fac
-    .getColorAsync(`${pokemonImg}`)
+    .getColorAsync(`${pokemonImg && pokemonImg}`)
     .then((color) => {
       setImgBackColor(color.rgba);
       setImgTxtColor(color.isDark ? "#fff" : "#000");
 
-      console.log("Average color", color);
+      // console.log("Average color", color);
     })
     .catch((e) => {
       console.log(e);
@@ -31,7 +31,9 @@ export default function PokemonCard({
       <Card
         className={`${styles.card} m-10`}
         style={{
-          backgroundColor: `${imgBacColor ? imgBacColor : 'rgba(154, 169, 186, 0.479)'}`,
+          backgroundColor: `${
+            imgBacColor ? imgBacColor : "rgba(154, 169, 186, 0.479)"
+          }`,
           color: `${imgTxtColor}`,
         }}
       >

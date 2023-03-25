@@ -1,0 +1,21 @@
+.btn {
+    background: linear-gradient(0deg, rgba(245, 255, 0, 1) 21%, rgba(0, 255, 226, 1) 100%);
+    color: black;
+    width: 8rem;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: linear-gradient(0deg, rgb(189, 196, 1) 21%, rgb(1, 197, 174) 100%);
+    color: black;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: black;
+
+}

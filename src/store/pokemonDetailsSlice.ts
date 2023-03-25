@@ -4,8 +4,32 @@ import { JSONPlaceholder, query } from "../constants/api-constants";
 import { IPokemonDetails } from "../interfaces/IPokemonDetails";
 import { PokemonDetailsState } from "../types/pokemonDetailsSliceType";
 import { FetchInfoError, IPokemon, ResponseType } from "../types/slicesType";
+import axios from "axios";
+import { PokemonsCount } from "../types/pokemonsSlice";
 
 const client = new GraphQLClient(JSONPlaceholder);
+
+export const fetchMainInfo = createAsyncThunk<
+  ResponseType,
+  IPokemon,
+  { rejectValue: FetchInfoError }
+>("pokemons/fetchInfo", async (request: IPokemon, thunkApi) => {
+  const response = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`
+  );
+
+  if (response.status !== 200) {
+    return thunkApi.rejectWithValue({
+      message: "Failed to fetch info.",
+    });
+  }
+
+  const data = await response.data;
+
+  console.log(data);
+
+  return { data: data };
+});
 
 export const fetchDetailsInfo = createAsyncThunk<
   ResponseType,
@@ -22,6 +46,7 @@ const initialState: PokemonDetailsState = {
   status: "idle",
   error: null,
   pokemonDetails: null,
+  pokemonsCount: 0,
 };
 
 const pokemonDetailsSlice = createSlice({
@@ -47,6 +72,21 @@ const pokemonDetailsSlice = createSlice({
     });
 
     builder.addCase(fetchDetailsInfo.rejected, (state, { payload }) => {
+      if (payload) state.error = payload.message;
+      state.status = "idle";
+    });
+
+    builder.addCase(fetchMainInfo.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+
+    builder.addCase(fetchMainInfo.fulfilled, (state, { payload }) => {
+      state.pokemonsCount = payload.data.count;
+      state.status = "idle";
+    });
+
+    builder.addCase(fetchMainInfo.rejected, (state, { payload }) => {
       if (payload) state.error = payload.message;
       state.status = "idle";
     });

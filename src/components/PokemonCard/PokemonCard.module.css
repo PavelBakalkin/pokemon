@@ -23,7 +23,7 @@
     font-size: 2rem;
     text-align: center;
     background: linear-gradient(0deg, rgb(246, 255, 0) 1%, rgb(0, 255, 225) 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 

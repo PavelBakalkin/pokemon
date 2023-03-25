@@ -3,4 +3,5 @@ import { GenericFetchType } from "./slicesType";
 
 export type PokemonDetailsState = GenericFetchType & {
   pokemonDetails: IPokemonDetails | null;
+  pokemonsCount: number;
 };
