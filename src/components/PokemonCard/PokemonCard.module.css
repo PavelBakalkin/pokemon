@@ -14,18 +14,17 @@
 }
 
 .cardBody img {
-    width: 16rem;
-    height: 16rem;
-}
-
-.navbar {
-    font-size: 1.8rem;
+    min-height: 16rem;
+    max-height: 16rem;
 }
 
 .cardTitle {
     padding: 1rem 0;
     font-size: 2rem;
-    text-align: center
+    text-align: center;
+    background: linear-gradient(0deg, rgb(246, 255, 0) 1%, rgb(0, 255, 225) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 @media (max-width: 992px) {

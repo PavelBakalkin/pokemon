@@ -11,7 +11,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchDetailsInfo({ limit: 20, offset: 0 }));
+    dispatch(fetchDetailsInfo({ limit: 20, offset: 40 }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
