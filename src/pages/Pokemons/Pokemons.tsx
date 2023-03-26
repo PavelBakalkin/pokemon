@@ -1,7 +1,6 @@
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import Pagination from "../../components/Pagination/Pagination";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import { IPokemonName } from "../../interfaces/IPokemonMain";
 import { useAppSelector } from "../../store/hooks";
 import styles from "./Pokemons.module.css";
 

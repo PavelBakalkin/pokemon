@@ -1,4 +1,4 @@
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { Button, Col, Modal, Row } from "react-bootstrap";
 import { IModalProps } from "../../interfaces/IModalProps";
 import { useAppSelector } from "../../store/hooks";
 import styles from "./ModalComponent.module.css";
@@ -13,7 +13,7 @@ export default function ModalComponent({
       state.pokemonDetails.pokemonDetails?.pokemon_v2_pokemonsprites.findIndex(
         (pokemon) => pokemon.pokemon_v2_pokemon.name === pokemonName
       );
-    if (pokemonIndex) {
+    if (pokemonIndex != null) {
       return {
         moves: {
           ...state.pokemonDetails.pokemonDetails?.pokemon_v2_move[pokemonIndex],
@@ -46,10 +46,21 @@ export default function ModalComponent({
             </Col>
             <Col sm={12} className="mb-1 mt-1">
               <div>Moves:</div>
-              <div>Accuracy: {` ${pokemonsDetails?.moves.accuracy}`}</div>
+              <div>
+                Accuracy:{" "}
+                {` ${
+                  pokemonsDetails?.moves.accuracy
+                    ? pokemonsDetails?.moves.accuracy
+                    : "unknown"
+                }`}
+              </div>
               <div>
                 Move effect chance:
-                {` ${pokemonsDetails?.moves.move_effect_chance}`}
+                {` ${
+                  pokemonsDetails?.moves.move_effect_chance
+                    ? pokemonsDetails?.moves.move_effect_chance
+                    : "unknown"
+                }`}
               </div>
               <div>Move name: {` ${pokemonsDetails?.moves.name}`}</div>
             </Col>
@@ -61,7 +72,9 @@ export default function ModalComponent({
           </Row>
         </Modal.Body>
         <Modal.Footer className={styles.modalBlock}>
-          <Button onClick={handleClose} className={styles.btn}>Close</Button>
+          <Button onClick={handleClose} className={styles.btn}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

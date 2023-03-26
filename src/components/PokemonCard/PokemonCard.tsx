@@ -15,14 +15,11 @@ export default function PokemonCard({
   const pokemonImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
 
   const fac = new FastAverageColor();
-
   fac
     .getColorAsync(`${pokemonImg && pokemonImg}`)
     .then((color) => {
       setImgBackColor(color.rgba);
       setImgTxtColor(color.isDark ? "#fff" : "#000");
-
-      // console.log("Average color", color);
     })
     .catch((e) => {
       console.log(e);
@@ -66,5 +63,5 @@ export default function PokemonCard({
         />
       )}
     </>
-  )
+  );
 }

@@ -12,6 +12,6 @@ export type ResponseType = {
 };
 
 export type IPokemon = {
-  limit: number;
-  offset: number;
+  limit?: number;
+  offset?: number;
 };

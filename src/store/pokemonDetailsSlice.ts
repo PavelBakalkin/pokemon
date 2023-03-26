@@ -5,7 +5,6 @@ import { IPokemonDetails } from "../interfaces/IPokemonDetails";
 import { PokemonDetailsState } from "../types/pokemonDetailsSliceType";
 import { FetchInfoError, IPokemon, ResponseType } from "../types/slicesType";
 import axios from "axios";
-import { PokemonsCount } from "../types/pokemonsSlice";
 
 const client = new GraphQLClient(JSONPlaceholder);
 
@@ -33,11 +32,9 @@ export const fetchDetailsInfo = createAsyncThunk<
   ResponseType,
   IPokemon,
   { rejectValue: FetchInfoError }
->("pokemons/fetchPokemonsDetails", async ({ limit, offset }, thunkApi) => {
+>("pokemons/fetchPokemonsDetails", async ({ limit, offset }) => {
   const variables = { limit, offset };
   const data: IPokemonDetails = await client.request(query, variables);
-
-  console.log(data);
 
   return { data: data };
 });
